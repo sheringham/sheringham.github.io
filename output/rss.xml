@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Luke's Blog</title><link>https://esir.me/</link><description>Luke's Blog</description><atom:link href="https://esir.me/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:hf.bluesky@gmail.com"&gt;Luke Wang&lt;/a&gt; </copyright><lastBuildDate>Tue, 13 Feb 2018 17:19:15 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>plan for 2018</title><link>https://esir.me/posts/plan-for-2018/</link><dc:creator>Luke Wang</dc:creator><description>&lt;div&gt;&lt;h2&gt;2018年计划&lt;/h2&gt;
-&lt;p&gt;2018都到2月了才想起记录下今年的计划。
-1. 学习Python.
-2. 1个月至少读一本书。&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Luke's Blog</title><link>https://esir.me/</link><description>Luke's Blog</description><atom:link href="https://esir.me/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:hf.bluesky@gmail.com"&gt;Luke Wang&lt;/a&gt; </copyright><lastBuildDate>Tue, 13 Feb 2018 17:24:35 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>2018年计划</title><link>https://esir.me/posts/plan-for-2018/</link><dc:creator>Luke Wang</dc:creator><description>&lt;div&gt;&lt;p&gt;2018都到2月了才想起记录下今年的计划。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;学习Python.&lt;/li&gt;
+&lt;li&gt;1个月至少读一本书。&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;希望到年底两个计划都能很好的执行。&lt;/p&gt;&lt;/div&gt;</description><guid>https://esir.me/posts/plan-for-2018/</guid><pubDate>Tue, 13 Feb 2018 17:15:41 GMT</pubDate></item></channel></rss>
