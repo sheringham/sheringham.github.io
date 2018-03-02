@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1519999776.103
+_modified_time = 1520000496.499
 _enable_loop = True
 _template_filename = u'themes/lanyon/templates/post_header.tmpl'
 _template_uri = u'post_header.tmpl'
@@ -31,12 +31,12 @@ def render_body(context,**pageargs):
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         __M_writer = context.writer()
-        __M_writer(u'\n')
-        __M_writer(u'\n\n')
-        __M_writer(u'\n\n')
-        __M_writer(u'\n\n')
-        __M_writer(u'\n\n')
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
+        __M_writer(u'\r\n\r\n')
+        __M_writer(u'\r\n\r\n')
+        __M_writer(u'\r\n\r\n')
+        __M_writer(u'\r\n\r\n')
+        __M_writer(u'\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -54,11 +54,11 @@ def render_html_post_header(context):
         site_has_comments = context.get('site_has_comments', UNDEFINED)
         post = context.get('post', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer(u'\n    <header>\n        ')
+        __M_writer(u'\r\n    <header>\r\n        ')
         __M_writer(unicode(html_title()))
-        __M_writer(u'\n        <div class="metadata">\n            <p class="byline author vcard"><span class="byline-name fn">')
+        __M_writer(u'\r\n        <div class="metadata">\r\n            <p class="byline author vcard"><span class="byline-name fn">')
         __M_writer(unicode(post.author()))
-        __M_writer(u'</span></p>\n            <p class="dateline"><a href="')
+        __M_writer(u'</span></p>\r\n            <p class="dateline"><a href="')
         __M_writer(unicode(post.permalink()))
         __M_writer(u'" rel="bookmark"><time class="post-date published dt-published" datetime="')
         __M_writer(unicode(post.date.isoformat()))
@@ -66,18 +66,18 @@ def render_html_post_header(context):
         __M_writer(unicode(post.formatted_date(date_format)))
         __M_writer(u'">')
         __M_writer(unicode(post.formatted_date(date_format)))
-        __M_writer(u'</time></a></p>\n')
+        __M_writer(u'</time></a></p>\r\n')
         if not post.meta('nocomments') and site_has_comments:
             __M_writer(u'                <p class="commentline">')
             __M_writer(unicode(comments.comment_link(post.permalink(), post._base_path)))
-            __M_writer(u'\n')
+            __M_writer(u'\r\n')
         if post.description():
             __M_writer(u'                <meta name="description" itemprop="description" content="')
             __M_writer(unicode(post.description()))
-            __M_writer(u'">\n')
-        __M_writer(u'        </div>\n        ')
+            __M_writer(u'">\r\n')
+        __M_writer(u'        </div>\r\n        ')
         __M_writer(unicode(html_translations(post)))
-        __M_writer(u'\n    </header>\n')
+        __M_writer(u'\r\n    </header>\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -89,13 +89,13 @@ def render_html_title(context):
         post = context.get('post', UNDEFINED)
         title = context.get('title', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         if title and not post.meta('hidetitle'):
             __M_writer(u'    <h1 class="post-title p-name entry-title" itemprop="headline name"><a href="')
             __M_writer(unicode(post.permalink()))
             __M_writer(u'" class="u-url">')
             __M_writer(filters.html_escape(unicode(post.title())))
-            __M_writer(u'</a></h1>\n')
+            __M_writer(u'</a></h1>\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -109,11 +109,11 @@ def render_html_translations(context,post):
         messages = context.get('messages', UNDEFINED)
         len = context.get('len', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         if len(post.translated_to) > 1:
-            __M_writer(u'        <div class="metadata posttranslations translations">\n            <h3 class="posttranslations-intro">')
+            __M_writer(u'        <div class="metadata posttranslations translations">\r\n            <h3 class="posttranslations-intro">')
             __M_writer(unicode(messages("Also available in:")))
-            __M_writer(u'</h3>\n')
+            __M_writer(u'</h3>\r\n')
             for langname in translations.keys():
                 if langname != lang and post.is_translation_available(langname):
                     __M_writer(u'                <p><a href="')
@@ -122,8 +122,8 @@ def render_html_translations(context,post):
                     __M_writer(unicode(langname))
                     __M_writer(u'">')
                     __M_writer(unicode(messages("LANGUAGE", langname)))
-                    __M_writer(u'</a></p>\n')
-            __M_writer(u'        </div>\n')
+                    __M_writer(u'</a></p>\r\n')
+            __M_writer(u'        </div>\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -136,13 +136,13 @@ def render_html_sourcelink(context):
         messages = context.get('messages', UNDEFINED)
         show_sourcelink = context.get('show_sourcelink', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         if show_sourcelink:
             __M_writer(u'        <p class="sourceline"><a href="')
             __M_writer(unicode(post.source_link()))
             __M_writer(u'" id="sourcelink">')
             __M_writer(unicode(messages("Source")))
-            __M_writer(u'</a></p>\n')
+            __M_writer(u'</a></p>\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()

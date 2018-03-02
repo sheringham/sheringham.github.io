@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1519999775.7
+_modified_time = 1520000496.065
 _enable_loop = True
 _template_filename = u'themes/lanyon/templates/index.tmpl'
 _template_uri = u'index.tmpl'
@@ -49,19 +49,19 @@ def render_body(context,**pageargs):
         index_teasers = context.get('index_teasers', UNDEFINED)
         index_file = context.get('index_file', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer(u'\n')
-        __M_writer(u'\n')
-        __M_writer(u'\n\n')
+        __M_writer(u'\r\n')
+        __M_writer(u'\r\n')
+        __M_writer(u'\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'extra_head'):
             context['self'].extra_head(**pageargs)
         
 
-        __M_writer(u'\n\n')
+        __M_writer(u'\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
             context['self'].content(**pageargs)
         
 
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -81,22 +81,22 @@ def render_content(context,**pageargs):
         site_has_comments = context.get('site_has_comments', UNDEFINED)
         index_teasers = context.get('index_teasers', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content_header'):
             context['self'].content_header(**pageargs)
         
 
-        __M_writer(u'\n<div class="posts">\n')
+        __M_writer(u'\r\n<div class="posts">\r\n')
         for post in posts:
             __M_writer(u'    <article class="post h-entry post-')
             __M_writer(unicode(post.meta('type')))
-            __M_writer(u'">\n    <header>\n        <h1 class="post-title p-name"><a href="')
+            __M_writer(u'">\r\n    <header>\r\n        <h1 class="post-title p-name"><a href="')
             __M_writer(unicode(post.permalink()))
             __M_writer(u'" class="u-url">')
             __M_writer(filters.html_escape(unicode(post.title())))
-            __M_writer(u'</a></h1>\n        <div class="metadata">\n            <p class="byline author vcard"><span class="byline-name fn">')
+            __M_writer(u'</a></h1>\r\n        <div class="metadata">\r\n            <p class="byline author vcard"><span class="byline-name fn">')
             __M_writer(unicode(post.author()))
-            __M_writer(u'</span></p>\n            <p class="dateline"><a href="')
+            __M_writer(u'</span></p>\r\n            <p class="dateline"><a href="')
             __M_writer(unicode(post.permalink()))
             __M_writer(u'" rel="bookmark"><time class="post-date published dt-published" datetime="')
             __M_writer(unicode(post.date.isoformat()))
@@ -104,28 +104,28 @@ def render_content(context,**pageargs):
             __M_writer(unicode(post.formatted_date(date_format)))
             __M_writer(u'">')
             __M_writer(unicode(post.formatted_date(date_format)))
-            __M_writer(u'</time></a></p>\n')
+            __M_writer(u'</time></a></p>\r\n')
             if not post.meta('nocomments') and site_has_comments:
                 __M_writer(u'                <p class="commentline">')
                 __M_writer(unicode(comments.comment_link(post.permalink(), post._base_path)))
-                __M_writer(u'\n')
-            __M_writer(u'        </div>\n    </header>\n')
+                __M_writer(u'\r\n')
+            __M_writer(u'        </div>\r\n    </header>\r\n')
             if index_teasers:
-                __M_writer(u'    <div class="p-summary entry-summary">\n    ')
+                __M_writer(u'    <div class="p-summary entry-summary">\r\n    ')
                 __M_writer(unicode(post.text(teaser_only=True)))
-                __M_writer(u'\n')
+                __M_writer(u'\r\n')
             else:
-                __M_writer(u'    <div class="e-content entry-content">\n    ')
+                __M_writer(u'    <div class="e-content entry-content">\r\n    ')
                 __M_writer(unicode(post.text(teaser_only=False)))
-                __M_writer(u'\n')
-            __M_writer(u'    </div>\n    </article>\n')
-        __M_writer(u'</div>\n')
+                __M_writer(u'\r\n')
+            __M_writer(u'    </div>\r\n    </article>\r\n')
+        __M_writer(u'</div>\r\n')
         __M_writer(unicode(helper.html_pager()))
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         __M_writer(unicode(comments.comment_link_script()))
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         __M_writer(unicode(helper.mathjax_script(posts)))
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -141,13 +141,13 @@ def render_extra_head(context,**pageargs):
         parent = context.get('parent', UNDEFINED)
         index_file = context.get('index_file', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer(u'\n    ')
+        __M_writer(u'\r\n    ')
         __M_writer(unicode(parent.extra_head()))
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         if posts and (permalink == '/' or permalink == '/' + index_file):
             __M_writer(u'        <link rel="prefetch" href="')
             __M_writer(unicode(posts[0].permalink()))
-            __M_writer(u'" type="text/html">\n')
+            __M_writer(u'" type="text/html">\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()

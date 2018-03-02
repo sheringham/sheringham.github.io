@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1519999775.85
+_modified_time = 1520000496.233
 _enable_loop = True
 _template_filename = u'themes/lanyon/templates/base_helper.tmpl'
 _template_uri = u'base_helper.tmpl'
@@ -18,12 +18,12 @@ def render_body(context,**pageargs):
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         __M_writer = context.writer()
-        __M_writer(u'\n')
-        __M_writer(u'\n\n')
-        __M_writer(u'\n\n')
-        __M_writer(u'\n\n')
-        __M_writer(u'\n\n')
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
+        __M_writer(u'\r\n\r\n')
+        __M_writer(u'\r\n\r\n')
+        __M_writer(u'\r\n\r\n')
+        __M_writer(u'\r\n\r\n')
+        __M_writer(u'\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -38,7 +38,7 @@ def render_html_translations(context):
         translations = context.get('translations', UNDEFINED)
         _link = context.get('_link', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer(u'\n    <ul class="translations">\n')
+        __M_writer(u'\r\n    <ul class="translations">\r\n')
         for langname in translations.keys():
             if langname != lang:
                 __M_writer(u'            <li><a href="')
@@ -47,8 +47,8 @@ def render_html_translations(context):
                 __M_writer(unicode(langname))
                 __M_writer(u'">')
                 __M_writer(unicode(messages("LANGUAGE", langname)))
-                __M_writer(u'</a></li>\n')
-        __M_writer(u'    </ul>\n')
+                __M_writer(u'</a></li>\r\n')
+        __M_writer(u'    </ul>\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -81,12 +81,12 @@ def render_html_headstart(context):
         def html_stylesheets():
             return render_html_stylesheets(context)
         __M_writer = context.writer()
-        __M_writer(u'\n<!DOCTYPE html>\n<html ')
+        __M_writer(u'\r\n<!DOCTYPE html>\r\n<html ')
         __M_writer(u"prefix='")
         if use_open_graph or (twitter_card and twitter_card['use_twitter_cards']):
             __M_writer(u'og: http://ogp.me/ns# article: http://ogp.me/ns/article# ')
         if comment_system == 'facebook':
-            __M_writer(u'fb: http://ogp.me/ns/fb#\n')
+            __M_writer(u'fb: http://ogp.me/ns/fb#\r\n')
         __M_writer(u"' ")
         if use_open_graph or (twitter_card and twitter_card['use_twitter_cards']):
             __M_writer(u'vocab="http://ogp.me/ns" ')
@@ -94,25 +94,25 @@ def render_html_headstart(context):
             __M_writer(u'dir="rtl" ')
         __M_writer(u'lang="')
         __M_writer(unicode(lang))
-        __M_writer(u'">\n<head>\n    <meta charset="utf-8">\n')
+        __M_writer(u'">\r\n<head>\r\n    <meta charset="utf-8">\r\n')
         if description:
             __M_writer(u'    <meta name="description" content="')
             __M_writer(unicode(description))
-            __M_writer(u'">\n')
-        __M_writer(u'    <meta name="viewport" content="width=device-width">\n    <title>')
+            __M_writer(u'">\r\n')
+        __M_writer(u'    <meta name="viewport" content="width=device-width">\r\n    <title>')
         __M_writer(striphtml(unicode(title)))
         __M_writer(u' | ')
         __M_writer(striphtml(unicode(blog_title)))
-        __M_writer(u'</title>\n\n    ')
+        __M_writer(u'</title>\r\n\r\n    ')
         __M_writer(unicode(html_stylesheets()))
-        __M_writer(u'\n    ')
+        __M_writer(u'\r\n    ')
         __M_writer(unicode(html_feedlinks()))
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         if permalink:
             __M_writer(u'      <link rel="canonical" href="')
             __M_writer(unicode(abs_link(permalink)))
-            __M_writer(u'">\n')
-        __M_writer(u'\n')
+            __M_writer(u'">\r\n')
+        __M_writer(u'\r\n')
         if favicons:
             for name, file, size in favicons:
                 __M_writer(u'            <link rel="')
@@ -121,33 +121,33 @@ def render_html_headstart(context):
                 __M_writer(unicode(file))
                 __M_writer(u'" sizes="')
                 __M_writer(unicode(size))
-                __M_writer(u'"/>\n')
-        __M_writer(u'\n')
+                __M_writer(u'"/>\r\n')
+        __M_writer(u'\r\n')
         if comment_system == 'facebook':
             __M_writer(u'        <meta property="fb:app_id" content="')
             __M_writer(unicode(comment_system_id))
-            __M_writer(u'">\n')
-        __M_writer(u'\n')
+            __M_writer(u'">\r\n')
+        __M_writer(u'\r\n')
         if prevlink:
             __M_writer(u'        <link rel="prev" href="')
             __M_writer(unicode(prevlink))
-            __M_writer(u'" type="text/html">\n')
+            __M_writer(u'" type="text/html">\r\n')
         if nextlink:
             __M_writer(u'        <link rel="next" href="')
             __M_writer(unicode(nextlink))
-            __M_writer(u'" type="text/html">\n')
-        __M_writer(u'\n    ')
+            __M_writer(u'" type="text/html">\r\n')
+        __M_writer(u'\r\n    ')
         __M_writer(unicode(mathjax_config))
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         if use_cdn:
-            __M_writer(u'        <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->\n')
+            __M_writer(u'        <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->\r\n')
         else:
             __M_writer(u'        <!--[if lt IE 9]><script src="')
             __M_writer(unicode(url_replacer(permalink, '/assets/js/html5.js', lang)))
-            __M_writer(u'"></script><![endif]-->\n')
-        __M_writer(u'\n    ')
+            __M_writer(u'"></script><![endif]-->\r\n')
+        __M_writer(u'\r\n    ')
         __M_writer(unicode(extra_head_data))
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -160,21 +160,21 @@ def render_late_load_js(context):
         use_bundles = context.get('use_bundles', UNDEFINED)
         social_buttons_code = context.get('social_buttons_code', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         if use_bundles:
             if use_cdn:
-                __M_writer(u'            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>\n            <script src="/assets/js/all.js"></script>\n')
+                __M_writer(u'            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>\r\n            <script src="/assets/js/all.js"></script>\r\n')
             else:
-                __M_writer(u'            <script src="/assets/js/all-nocdn.js"></script>\n')
+                __M_writer(u'            <script src="/assets/js/all-nocdn.js"></script>\r\n')
         else:
             if use_cdn:
-                __M_writer(u'            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>\n')
+                __M_writer(u'            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>\r\n')
             else:
-                __M_writer(u'            <script src="/assets/js/jquery.min.js"></script>\n')
-            __M_writer(u'        <script src="/assets/js/moment-with-locales.min.js"></script>\n        <script src="/assets/js/fancydates.js"></script>\n')
+                __M_writer(u'            <script src="/assets/js/jquery.min.js"></script>\r\n')
+            __M_writer(u'        <script src="/assets/js/moment-with-locales.min.js"></script>\r\n        <script src="/assets/js/fancydates.js"></script>\r\n')
         __M_writer(u'    ')
         __M_writer(unicode(social_buttons_code))
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -186,14 +186,14 @@ def render_html_stylesheets(context):
         has_custom_css = context.get('has_custom_css', UNDEFINED)
         use_bundles = context.get('use_bundles', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         if use_bundles:
-            __M_writer(u'        <link href="/assets/css/all.css" rel="stylesheet" type="text/css">\n')
+            __M_writer(u'        <link href="/assets/css/all.css" rel="stylesheet" type="text/css">\r\n')
         else:
-            __M_writer(u'        <link href="/assets/css/rst.css" rel="stylesheet" type="text/css">\n        <link href="/assets/css/poole.css" rel="stylesheet" type="text/css">\n        <link href="/assets/css/lanyon.css" rel="stylesheet" type="text/css">\n        <link href="/assets/css/code.css" rel="stylesheet" type="text/css">\n')
+            __M_writer(u'        <link href="/assets/css/rst.css" rel="stylesheet" type="text/css">\r\n        <link href="/assets/css/poole.css" rel="stylesheet" type="text/css">\r\n        <link href="/assets/css/lanyon.css" rel="stylesheet" type="text/css">\r\n        <link href="/assets/css/code.css" rel="stylesheet" type="text/css">\r\n')
             if has_custom_css:
-                __M_writer(u'            <link href="/assets/css/custom.css" rel="stylesheet" type="text/css">\n')
-        __M_writer(u'    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">\n')
+                __M_writer(u'            <link href="/assets/css/custom.css" rel="stylesheet" type="text/css">\r\n')
+        __M_writer(u'    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -209,11 +209,11 @@ def render_html_feedlinks(context):
         _link = context.get('_link', UNDEFINED)
         generate_atom = context.get('generate_atom', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         if rss_link:
             __M_writer(u'        ')
             __M_writer(unicode(rss_link))
-            __M_writer(u'\n')
+            __M_writer(u'\r\n')
         elif generate_rss:
             if len(translations) > 1:
                 for language in translations:
@@ -221,11 +221,11 @@ def render_html_feedlinks(context):
                     __M_writer(unicode(language))
                     __M_writer(u')" href="')
                     __M_writer(unicode(_link('rss', None, language)))
-                    __M_writer(u'">\n')
+                    __M_writer(u'">\r\n')
             else:
                 __M_writer(u'            <link rel="alternate" type="application/rss+xml" title="RSS" href="')
                 __M_writer(unicode(_link('rss', None)))
-                __M_writer(u'">\n')
+                __M_writer(u'">\r\n')
         if generate_atom:
             if len(translations) > 1:
                 for language in translations:
@@ -233,11 +233,11 @@ def render_html_feedlinks(context):
                     __M_writer(unicode(language))
                     __M_writer(u')" href="')
                     __M_writer(unicode(_link('index_atom', None, language)))
-                    __M_writer(u'">\n')
+                    __M_writer(u'">\r\n')
             else:
                 __M_writer(u'            <link rel="alternate" type="application/atom+xml" title="Atom" href="')
                 __M_writer(unicode(_link('index_atom', None)))
-                __M_writer(u'">\n')
+                __M_writer(u'">\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()

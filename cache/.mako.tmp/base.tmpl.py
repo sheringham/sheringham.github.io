@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1519999775.75
+_modified_time = 1520000496.124
 _enable_loop = True
 _template_filename = u'themes/lanyon/templates/base.tmpl'
 _template_uri = u'base.tmpl'
@@ -59,58 +59,58 @@ def render_body(context,**pageargs):
         def extra_js():
             return render_extra_js(context._locals(__M_locals))
         __M_writer = context.writer()
-        __M_writer(u'\n')
-        __M_writer(u'\n')
-        __M_writer(u'\n')
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
+        __M_writer(u'\r\n')
+        __M_writer(u'\r\n')
+        __M_writer(u'\r\n')
         __M_writer(unicode(set_locale(lang)))
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         __M_writer(unicode(base.html_headstart()))
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'extra_head'):
             context['self'].extra_head(**pageargs)
         
 
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         __M_writer(unicode(template_hooks['extra_head']()))
-        __M_writer(u'\n</head>\n')
+        __M_writer(u'\r\n</head>\r\n')
         if lanyon_subtheme:
             __M_writer(u'<body class="')
             __M_writer(unicode(lanyon_subtheme))
-            __M_writer(u'">\n')
+            __M_writer(u'">\r\n')
         else:
-            __M_writer(u'<body>\n')
+            __M_writer(u'<body>\r\n')
         __M_writer(u'    <a href="#content" class="sr-only sr-only-focusable">')
         __M_writer(unicode(messages("Skip to main content")))
-        __M_writer(u'</a>\n    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular\n            styles, `#sidebar-checkbox` for behavior. -->\n    <input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">\n\n    <!-- Toggleable sidebar -->\n    <div class="sidebar" id="sidebar">\n        <div class="sidebar-item">\n            <p>A reserved <a href="https://getnikola.com" target="_blank">Nikola</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a> for Jekyll,\n            ported to Nikola by <a href="https://twitter.com/ralsina" target="_blank">@ralsina</a>.</p>\n        </div>\n        ')
+        __M_writer(u'</a>\r\n    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular\r\n            styles, `#sidebar-checkbox` for behavior. -->\r\n    <input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">\r\n\r\n    <!-- Toggleable sidebar -->\r\n    <div class="sidebar" id="sidebar">\r\n        <div class="sidebar-item">\r\n            <p>A reserved <a href="https://getnikola.com" target="_blank">Nikola</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a> for Jekyll,\r\n            ported to Nikola by <a href="https://twitter.com/ralsina" target="_blank">@ralsina</a>.</p>\r\n        </div>\r\n        ')
         __M_writer(unicode(header.html_navigation_links()))
-        __M_writer(u'\n    </div>\n\n    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the\n         content to avoid any CSS collisions with our real content. -->\n    <div class="wrap">\n      <div class="masthead">\n        <div class="container">\n          ')
+        __M_writer(u'\r\n    </div>\r\n\r\n    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the\r\n         content to avoid any CSS collisions with our real content. -->\r\n    <div class="wrap">\r\n      <div class="masthead">\r\n        <div class="container">\r\n          ')
         __M_writer(unicode(header.html_site_title()))
-        __M_writer(u'\n        </div>\n      </div>\n\n      <div class="container content" id="content">\n        ')
+        __M_writer(u'\r\n        </div>\r\n      </div>\r\n\r\n      <div class="container content" id="content">\r\n        ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
             context['self'].content(**pageargs)
         
 
-        __M_writer(u'\n        ')
+        __M_writer(u'\r\n        ')
         __M_writer(unicode(footer.html_footer()))
-        __M_writer(u'\n      </div>\n    </div>\n    <label for="sidebar-checkbox" class="sidebar-toggle"></label>\n    ')
+        __M_writer(u'\r\n      </div>\r\n    </div>\r\n    <label for="sidebar-checkbox" class="sidebar-toggle"></label>\r\n    ')
         __M_writer(unicode(body_end))
-        __M_writer(u'\n    ')
+        __M_writer(u'\r\n    ')
         __M_writer(unicode(template_hooks['body_end']()))
-        __M_writer(u'\n    ')
+        __M_writer(u'\r\n    ')
         __M_writer(unicode(base.late_load_js()))
-        __M_writer(u'\n    <!-- fancy dates -->\n    <script>\n    moment.locale("')
+        __M_writer(u'\r\n    <!-- fancy dates -->\r\n    <script>\r\n    moment.locale("')
         __M_writer(unicode(momentjs_locales[lang]))
-        __M_writer(u'");\n    fancydates(')
+        __M_writer(u'");\r\n    fancydates(')
         __M_writer(unicode(date_fanciness))
         __M_writer(u', ')
         __M_writer(unicode(js_date_format))
-        __M_writer(u');\n    </script>\n    <!-- end fancy dates -->\n    ')
+        __M_writer(u');\r\n    </script>\r\n    <!-- end fancy dates -->\r\n    ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'extra_js'):
             context['self'].extra_js(**pageargs)
         
 
-        __M_writer(u'\n</body>\n</html>\n')
+        __M_writer(u'\r\n</body>\r\n</html>\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -141,7 +141,7 @@ def render_extra_head(context,**pageargs):
         def extra_head():
             return render_extra_head(context)
         __M_writer = context.writer()
-        __M_writer(u'\n')
+        __M_writer(u'\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
