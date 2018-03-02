@@ -10,7 +10,7 @@
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <link rel="canonical" href="https://esir.me/">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/plan-for-2018/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/ubuntu-14-service-networking-restart-not-working/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -63,7 +63,41 @@
 
     
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/plan-for-2018/" class="u-url">2018年计划</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/ubuntu-14-service-networking-restart-not-working/" class="u-url">ubuntu 14通过service networking restart重启网络失败</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Luke Wang
+            </span></p>
+            <p class="dateline"><a href="posts/ubuntu-14-service-networking-restart-not-working/" rel="bookmark"><time class="published dt-published" datetime="2018-03-02T19:52:54+08:00" title="2018-03-02 19:52">2018-03-02 19:52</time></a></p>
+                <p class="commentline">
+        
+    <a href="posts/ubuntu-14-service-networking-restart-not-working/#disqus_thread" data-disqus-identifier="cache/posts/ubuntu-14-service-networking-restart-not-working.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>之前就遇到过启动Debian或者Ubuntu虚拟机并修改网络后使用<code>service netwoking restart</code>出现如下报错的失败的问题，当时觉得反正虚拟机启动也快，就直接重启解决。</p>
+<pre class="code literal-block"><span></span># service  networking restart
+stop: Job failed while stopping
+start: Job is already running: networking
+</pre>
+
+
+<p>今天启动Ubuntu 14.04虚拟机后又遇到类似的问题，发现原因是不支持使用这种方式重启网络。</p>
+<pre class="code literal-block"><span></span># tail -f /var/log/upstart/networking.log
+Stopping or restarting the networking job is not supported.
+Use ifdown &amp; ifup to reconfigure desired interface.
+</pre>
+
+
+<p>于是采用如下的方式去重启除loopback之外的所有网卡即可解决。</p>
+<pre class="code literal-block"><span></span># ifdown --exclude=lo -a &amp;&amp; sudo ifup --exclude=lo -a
+</pre>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/plan-for-2018/" class="u-url">2018年计划</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Luke Wang
