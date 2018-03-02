@@ -5,12 +5,12 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1519992270.382
+_modified_time = 1519999776.053
 _enable_loop = True
-_template_filename = u'c:/python27/lib/site-packages/nikola/data/themes/bootstrap3/templates/post.tmpl'
+_template_filename = u'c:/python27/lib/site-packages/nikola/data/themes/base/templates/post.tmpl'
 _template_uri = u'post.tmpl'
 _source_encoding = 'utf-8'
-_exports = [u'content', u'extra_head', u'sourcelink']
+_exports = [u'content', u'extra_head']
 
 
 def _mako_get_namespace(context, name):
@@ -44,13 +44,10 @@ def render_body(context,**pageargs):
             return render_extra_head(context._locals(__M_locals))
         parent = context.get('parent', UNDEFINED)
         helper = _mako_get_namespace(context, 'helper')
-        def sourcelink():
-            return render_sourcelink(context._locals(__M_locals))
         messages = context.get('messages', UNDEFINED)
         comments = _mako_get_namespace(context, 'comments')
         def content():
             return render_content(context._locals(__M_locals))
-        show_sourcelink = context.get('show_sourcelink', UNDEFINED)
         site_has_comments = context.get('site_has_comments', UNDEFINED)
         post = context.get('post', UNDEFINED)
         math = _mako_get_namespace(context, 'math')
@@ -67,11 +64,6 @@ def render_body(context,**pageargs):
         __M_writer(u'\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
             context['self'].content(**pageargs)
-        
-
-        __M_writer(u'\n\n')
-        if 'parent' not in context._data or not hasattr(context._data['parent'], 'sourcelink'):
-            context['self'].sourcelink(**pageargs)
         
 
         __M_writer(u'\n')
@@ -168,29 +160,8 @@ def render_extra_head(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_sourcelink(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def sourcelink():
-            return render_sourcelink(context)
-        post = context.get('post', UNDEFINED)
-        messages = context.get('messages', UNDEFINED)
-        show_sourcelink = context.get('show_sourcelink', UNDEFINED)
-        __M_writer = context.writer()
-        __M_writer(u'\n')
-        if show_sourcelink:
-            __M_writer(u'    <li>\n    <a href="')
-            __M_writer(unicode(post.source_link()))
-            __M_writer(u'" id="sourcelink">')
-            __M_writer(unicode(messages("Source")))
-            __M_writer(u'</a>\n    </li>\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "line_map": {"133": 8, "134": 9, "135": 9, "136": 10, "137": 11, "138": 11, "139": 11, "140": 13, "141": 13, "142": 13, "143": 14, "144": 15, "145": 15, "146": 15, "147": 15, "148": 15, "149": 17, "150": 18, "23": 3, "152": 18, "153": 18, "26": 4, "155": 20, "156": 21, "29": 2, "158": 23, "159": 23, "32": 5, "161": 24, "162": 25, "163": 25, "164": 26, "165": 26, "38": 0, "171": 52, "154": 18, "151": 18, "157": 23, "180": 52, "181": 53, "182": 54, "183": 55, "184": 55, "185": 55, "58": 2, "59": 3, "60": 4, "61": 5, "62": 6, "192": 186, "160": 24, "67": 27, "72": 50, "77": 58, "83": 29, "186": 55, "96": 29, "97": 30, "98": 30, "99": 31, "100": 31, "101": 33, "102": 33, "103": 37, "104": 37, "105": 38, "106": 38, "107": 41, "108": 42, "109": 43, "110": 43, "111": 44, "112": 44, "113": 47, "114": 47, "115": 47, "116": 49, "117": 49, "123": 8}, "uri": "post.tmpl", "filename": "c:/python27/lib/site-packages/nikola/data/themes/bootstrap3/templates/post.tmpl"}
+{"source_encoding": "utf-8", "line_map": {"128": 10, "129": 11, "130": 11, "131": 11, "132": 13, "133": 13, "134": 13, "135": 14, "136": 15, "137": 15, "138": 15, "139": 15, "140": 15, "141": 17, "142": 18, "143": 18, "144": 18, "145": 18, "146": 18, "147": 20, "148": 21, "149": 23, "150": 23, "23": 3, "152": 24, "153": 24, "26": 4, "155": 25, "156": 26, "29": 2, "32": 5, "163": 157, "38": 0, "157": 26, "55": 2, "56": 3, "57": 4, "58": 5, "59": 6, "151": 23, "64": 27, "69": 50, "75": 29, "88": 29, "89": 30, "90": 30, "91": 31, "92": 31, "93": 33, "94": 33, "95": 37, "96": 37, "97": 38, "98": 38, "99": 41, "100": 42, "101": 43, "102": 43, "103": 44, "104": 44, "105": 47, "106": 47, "107": 47, "108": 49, "109": 49, "154": 25, "115": 8, "125": 8, "126": 9, "127": 9}, "uri": "post.tmpl", "filename": "c:/python27/lib/site-packages/nikola/data/themes/base/templates/post.tmpl"}
 __M_END_METADATA
 """
