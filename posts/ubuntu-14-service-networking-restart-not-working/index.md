@@ -13,7 +13,7 @@
 之前就遇到过启动Debian或者Ubuntu虚拟机并修改网络后使用`service netwoking restart`出现如下报错的失败的问题，当时觉得反正虚拟机启动也快，就直接重启解决。
 
 
-```
+```shell
 # service  networking restart
 stop: Job failed while stopping
 start: Job is already running: networking
@@ -22,7 +22,7 @@ start: Job is already running: networking
 
 今天启动Ubuntu 14.04虚拟机后又遇到类似的问题，发现原因是不支持使用这种方式重启网络。
 
-```
+```shell
 # tail -f /var/log/upstart/networking.log
 Stopping or restarting the networking job is not supported.
 Use ifdown & ifup to reconfigure desired interface.
@@ -31,7 +31,7 @@ Use ifdown & ifup to reconfigure desired interface.
 于是采用如下的方式去重启除loopback之外的所有网卡即可解决。
 
 
-```
+```shell
 # ifdown --exclude=lo -a && sudo ifup --exclude=lo -a
 
 ```
