@@ -1,5 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Luke's Blog</title><link>https://esir.me/</link><description>Luke's Blog</description><atom:link href="https://esir.me/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:hf.bluesky@gmail.com"&gt;Luke Wang&lt;/a&gt; </copyright><lastBuildDate>Fri, 02 Mar 2018 14:08:56 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>ubuntu 14通过service networking restart重启网络失败</title><link>https://esir.me/posts/ubuntu-14-service-networking-restart-not-working/</link><dc:creator>Luke Wang</dc:creator><description>&lt;div&gt;&lt;p&gt;之前就遇到过启动Debian或者Ubuntu虚拟机并修改网络后使用&lt;code&gt;service netwoking restart&lt;/code&gt;出现如下报错的失败的问题，当时觉得反正虚拟机启动也快，就直接重启解决。&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Luke's Blog</title><link>https://esir.me/</link><description>Luke's Blog</description><atom:link href="https://esir.me/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:hf.bluesky@gmail.com"&gt;Luke Wang&lt;/a&gt; </copyright><lastBuildDate>Sun, 11 Mar 2018 15:05:20 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Openstack swift和Owncloud对接</title><link>https://esir.me/posts/openstack-swift-and-owncloud/</link><dc:creator>Luke Wang</dc:creator><description>&lt;div&gt;&lt;h3&gt;Swift的几个相关概念&lt;/h3&gt;
+&lt;h4&gt;Proxy&lt;/h4&gt;
+&lt;p&gt;提供HTTP API给client，用来存储，查询，下载文件。Client只会跟proxy通信，存储节点对client是不可见的。&lt;/p&gt;
+&lt;h4&gt;Account&lt;/h4&gt;
+&lt;p&gt;Swift中的account并不是认证的概念，可以理解为一块存储区域，主要记录了container的信息。&lt;/p&gt;
+&lt;h4&gt;Container&lt;/h4&gt;
+&lt;p&gt;Container中主要记录了Object的相关信息。&lt;/p&gt;
+&lt;h4&gt;Object&lt;/h4&gt;
+&lt;p&gt;记录实际文件的存储位置等信息。&lt;/p&gt;
+&lt;h4&gt;存储节点&lt;/h4&gt;
+&lt;p&gt;安装了account server，container server和object server（三者中的一个或者多个）的服务器。&lt;/p&gt;
+&lt;h3&gt;Swift的网络规划需求&lt;/h3&gt;
+&lt;p&gt;### 网络平面
+Swift的业务网络平面至少包含&lt;code&gt;Outward-facing network&lt;/code&gt;,即proxy对外提供API的网络，&lt;code&gt;Cluster-facing network&lt;/code&gt;,即proxy面向存储节点的网络。&lt;/p&gt;
+&lt;h4&gt;对于网卡的需求&lt;/h4&gt;
+&lt;p&gt;Swiftstack建议proxy至少要支持20Gbps的转发能力&lt;sup id="fnref-1"&gt;&lt;a class="footnote-ref" href="https://esir.me/posts/openstack-swift-and-owncloud/#fn-1"&gt;1&lt;/a&gt;&lt;/sup&gt;，即考虑&lt;code&gt;Outward-facing&lt;/code&gt;5Gbps, &lt;code&gt;Cluster-facing&lt;/code&gt;15Gbps(因为一般是配置3个副本)。&lt;/p&gt;
+&lt;h3&gt;Openstack Swift的安装&lt;/h3&gt;
+&lt;p&gt;根据Openstack的版本参考官方文档&lt;sup id="fnref-2"&gt;&lt;a class="footnote-ref" href="https://esir.me/posts/openstack-swift-and-owncloud/#fn-2"&gt;2&lt;/a&gt;&lt;/sup&gt;即可，但因Owncloud不支持&lt;code&gt;Keystone v3&lt;/code&gt;需要按如下步骤配置&lt;code&gt;Keystone v2&lt;/code&gt;&lt;sup id="fnref-3"&gt;&lt;a class="footnote-ref" href="https://esir.me/posts/openstack-swift-and-owncloud/#fn-3"&gt;3&lt;/a&gt;&lt;/sup&gt;。
+* &lt;code&gt;keystone.conf&lt;/code&gt; 中配置&lt;code&gt;default_domain_id&lt;/code&gt;&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;[identity] 
+
+default_domain_id  = xxxxxxxx32ea5xxxxx2b6f93
+&lt;/pre&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;同步keystone配置文件和数据库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;su -s /bin/sh -c &lt;span class="s2"&gt;"keystone-manage --config-file /etc/keystone/keystone.conf db_sync"&lt;/span&gt; keystone
+&lt;/pre&gt;
+
+
+&lt;h3&gt;Owncloud上的配置&lt;/h3&gt;
+&lt;p&gt;Owncluod上的配置参见官方文档&lt;sup id="fnref-4"&gt;&lt;a class="footnote-ref" href="https://esir.me/posts/openstack-swift-and-owncloud/#fn-4"&gt;4&lt;/a&gt;&lt;/sup&gt;，其中：
+&lt;em&gt;   &lt;strong&gt;Bucket&lt;/strong&gt;对应于swift中就是&lt;code&gt;container&lt;/code&gt;
+&lt;/em&gt;   &lt;strong&gt;Username&lt;/strong&gt;对应于Openstack上租户的用户名
+&lt;em&gt;   &lt;strong&gt;Password&lt;/strong&gt; 对应于Openstack上租户的密码
+&lt;/em&gt;   &lt;strong&gt;Tenant name&lt;/strong&gt;对应于Openstack上的租户 
+*   &lt;strong&gt;Identity Endpoint URL&lt;/strong&gt;, 即keystone的URL&lt;/p&gt;
+&lt;p&gt;另外要注意的是虽然在页面上&lt;code&gt;Service name&lt;/code&gt;并不是必填项，但实际操作中发现此处不填是无法正常使用的，应配置为&lt;code&gt;swift&lt;/code&gt;,&lt;code&gt;Region&lt;/code&gt;也按配置openstack swift时创建的region名称来配置。&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn-1"&gt;
+&lt;p&gt;&lt;a href="https://www.swiftstack.com/docs/admin/hardware.html#networked-nodes-architecture"&gt;SwiftStack&lt;/a&gt; &lt;a class="footnote-backref" href="https://esir.me/posts/openstack-swift-and-owncloud/#fnref-1" title="Jump back to footnote 1 in the text"&gt;↩&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn-2"&gt;
+&lt;p&gt;&lt;a href="https://docs.openstack.org/mitaka/install-guide-ubuntu/swift.html"&gt;OpenStack Installation Guide for Ubuntu&lt;/a&gt; &lt;a class="footnote-backref" href="https://esir.me/posts/openstack-swift-and-owncloud/#fnref-2" title="Jump back to footnote 2 in the text"&gt;↩&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn-3"&gt;
+&lt;p&gt;&lt;a href="https://ask.openstack.org/en/question/93199/how-to-enable-keystone-v2-on-mitaka/"&gt;https://ask.openstack.org/en/question/93199/how-to-enable-keystone-v2-on-mitaka/&lt;/a&gt; &lt;a class="footnote-backref" href="https://esir.me/posts/openstack-swift-and-owncloud/#fnref-3" title="Jump back to footnote 3 in the text"&gt;↩&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn-4"&gt;
+&lt;p&gt;&lt;a href="https://doc.owncloud.org/server/10.0/admin_manual/configuration/files/external_storage/openstack.html"&gt;ownCloud 10.0.7 Server Administration Manual&lt;/a&gt; &lt;a class="footnote-backref" href="https://esir.me/posts/openstack-swift-and-owncloud/#fnref-4" title="Jump back to footnote 4 in the text"&gt;↩&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;&lt;/div&gt;</description><guid>https://esir.me/posts/openstack-swift-and-owncloud/</guid><pubDate>Sun, 11 Mar 2018 15:03:21 GMT</pubDate></item><item><title>ubuntu 14通过service networking restart重启网络失败</title><link>https://esir.me/posts/ubuntu-14-service-networking-restart-not-working/</link><dc:creator>Luke Wang</dc:creator><description>&lt;div&gt;&lt;p&gt;之前就遇到过启动Debian或者Ubuntu虚拟机并修改网络后使用&lt;code&gt;service netwoking restart&lt;/code&gt;出现如下报错的失败的问题，当时觉得反正虚拟机启动也快，就直接重启解决。&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# service  networking restart&lt;/span&gt;
 stop: Job failed &lt;span class="k"&gt;while&lt;/span&gt; stopping
 start: Job is already running: networking
